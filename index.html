@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090a10"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>EDIT AI — iPhone</title>
+<style>
+:root{color-scheme:dark;--bg:#090a10;--panel:#141724;--line:#2c3248;--muted:#a3a9bc;--blue:#7986ff;--violet:#a16cff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 85% 0,#292148 0,transparent 36%),var(--bg);color:#f4f5fb;font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:760px;margin:auto;padding:calc(16px + env(safe-area-inset-top)) 14px calc(35px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.brand{font-size:20px;font-weight:900;letter-spacing:1px}.brand span{color:#ad9aff}.tag{font-size:10px;color:#c7c7ff;border:1px solid #494276;background:#262344;padding:6px 9px;border-radius:20px}
+h1{font-size:36px;line-height:1.05;letter-spacing:-1px;margin:0 0 9px}.grad{background:linear-gradient(90deg,#9aa8ff,#c39aff,#61d9eb);color:transparent;background-clip:text}.intro{color:var(--muted);font-size:14px;margin:0 0 20px}
+.panel{background:linear-gradient(180deg,#161a28,#11141e);border:1px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}.panel h2{font-size:16px;margin:0 0 13px}
+.pick{border:1px dashed #6973a5;border-radius:14px;background:#1a1f32;padding:18px 12px;text-align:center}.plus{width:44px;height:44px;border-radius:14px;background:#2c3157;color:#bdc4ff;font-size:28px;line-height:44px;margin:auto auto 9px}.pick strong{display:block}.muted{color:var(--muted);font-size:13px}
+input[type=file]{display:block;width:100%;margin-top:13px;color:#e9ebff;font-size:13px;max-width:100%}input[type=file]::file-selector-button{border:0;border-radius:9px;padding:10px 12px;background:linear-gradient(100deg,#6678ff,#9865ed);color:white;font-weight:700;margin-right:8px}
+.filelist{display:grid;gap:8px;margin-top:12px}.empty{color:var(--muted);font-size:13px;padding:8px 0}.file{display:flex;align-items:center;gap:10px;padding:10px;background:#1c2030;border:1px solid #30364c;border-radius:11px;min-width:0}.file .meta{flex:1;min-width:0}.file .name{font-size:13px;overflow-wrap:anywhere}.file .size{font-size:11px;color:var(--muted)}.remove{background:none;border:0;color:#d0d4e5;font-size:22px;padding:3px 8px}
+.count{font-size:12px;color:var(--muted);margin-top:11px}.count b{color:#fff}
+label{display:block;font-size:13px;color:#c8ccda;margin:0 0 7px}textarea,select{width:100%;background:#0d1019;color:#fff;border:1px solid #39405b;border-radius:11px;padding:12px;font:inherit;font-size:16px;outline:none}textarea{min-height:100px;resize:vertical}select{min-height:46px}
+.field{margin-bottom:13px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{border:1px solid #3a4058;border-radius:30px;background:#1c2030;color:#c7cce0;padding:9px 12px;font-size:13px}.chip.active{background:#2c2d53;border-color:#8490ff;color:white}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:14px;color:#fff;font-weight:800;font-size:15px;background:linear-gradient(100deg,#6678ff,#9865ed)}.btn:disabled{opacity:.42}.secondary{background:#242a3d;border:1px solid #424a67}.preview{aspect-ratio:9/16;max-height:430px;margin:auto;background:#050609;border:1px solid #30364a;border-radius:12px;overflow:hidden;display:grid;place-items:center}.preview video{width:100%;height:100%;object-fit:contain}.placeholder{text-align:center;color:var(--muted);padding:20px}.placeholder b{display:block;color:#fff;margin:7px 0}.progress{height:6px;background:#30364a;border-radius:9px;overflow:hidden;margin:12px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,#7785ff,#54d4e8)}.status{font-size:13px;color:#c3c9dc;min-height:20px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.note{font-size:12px;line-height:1.5;color:#989fb3;margin:11px 0 0}
+@media(min-width:700px){main{padding-top:28px}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.preview{aspect-ratio:16/9;max-height:none}}
+</style></head>
+<body><main>
+<header><div class="brand">◈ EDIT <span>AI</span></div><div class="tag">IPHONE EDITION</div></header>
+<h1>Твой монтаж.<br><span class="grad">На автомате.</span></h1>
+<p class="intro">Версия с упрощённой загрузкой и облегчённым экспортом для Safari на iPhone.</p>
+<section class="panel">
+<h2>01 · Добавь видео</h2>
+<div class="pick"><div class="plus">+</div><strong>Выбери ролики из Фото или Файлов</strong><div class="muted">До 3 роликов в этой облегчённой версии</div>
+<input id="picker" type="file" accept="video/*" multiple aria-label="Выбрать видео">
+</div>
+<div class="filelist" id="filelist"><div class="empty">Пока видео не добавлены.</div></div>
+<div class="count">Добавлено: <b id="count">0 / 3</b></div>
+</section>
+<section class="panel">
+<h2>02 · Опиши эдит</h2>
+<div class="field"><label for="prompt">Какой результат хочешь?</label><textarea id="prompt" placeholder="Например: динамичный автомобильный эдит, быстрые склейки, холодные цвета…"></textarea></div>
+<div class="field"><label>Стиль</label><div class="chips"><button class="chip active" data-mood="dynamic">Динамичный</button><button class="chip" data-mood="cinema">Кино</button><button class="chip" data-mood="atmo">Атмосферный</button><button class="chip" data-mood="calm">Спокойный</button></div></div>
+<div class="field"><label for="ratio">Формат</label><select id="ratio"><option value="vertical">9:16 · TikTok / Reels</option><option value="wide">16:9 · YouTube</option><option value="square">1:1 · Квадрат</option></select></div>
+<button class="btn" id="make" disabled>✦ Создать эдит</button>
+<p class="note">Для стабильной работы на iPhone экспорт здесь ограничен 15 секундами и выполняется без звука. Это тестовая сборка, не полноценный ИИ-монтаж.</p>
+</section>
+<section class="panel">
+<h2>03 · Предпросмотр и сохранение</h2>
+<div class="preview" id="preview"><div class="placeholder">▶<b>Здесь появится видео</b><span class="muted">Добавь ролики и создай эдит</span></div></div>
+<div class="progress"><div class="bar" id="bar"></div></div><div class="status" id="status" role="status" aria-live="polite">Ожидание видео</div>
+<div class="actions"><button class="btn secondary" id="play" disabled>▶ Просмотр</button><button class="btn" id="save" disabled>↓ Сохранить</button></div>
+<p class="note">Когда видео готово, нажми «Сохранить». Если Safari откроет ролик вместо загрузки, нажми «Поделиться» → «Сохранить видео» или «Сохранить в Файлы».</p>
+</section>
+</main>
+<script>
+(()=>{
+const $=id=>document.getElementById(id),picker=$('picker'),list=$('filelist'),make=$('make'),status=$('status'),bar=$('bar'),preview=$('preview');
+let clips=[],mood='dynamic',busy=false,outBlob=null,outUrl=null,outVideo=null;
+const size=n=>n<1048576?Math.round(n/1024)+' KB':(n/1048576).toFixed(1)+' MB';
+function msg(s){status.textContent=s}
+function clearOutput(){outBlob=null;if(outUrl){URL.revokeObjectURL(outUrl);outUrl=null}outVideo=null;$('save').disabled=true;$('play').disabled=true;bar.style.width='0%';preview.innerHTML='<div class="placeholder">▶<b>Здесь появится видео</b><span class="muted">Создай эдит после загрузки</span></div>'}
+function render(){list.innerHTML='';if(!clips.length)list.innerHTML='<div class="empty">Пока видео не добавлены.</div>';clips.forEach((f,i)=>{const row=document.createElement('div');row.className='file';const meta=document.createElement('div');meta.className='meta';const name=document.createElement('div');name.className='name';name.textContent='🎬 '+f.name;const sz=document.createElement('div');sz.className='size';sz.textContent=size(f.size);meta.append(name,sz);const rm=document.createElement('button');rm.className='remove';rm.type='button';rm.textContent='×';rm.onclick=()=>{clips.splice(i,1);render();clearOutput();msg('Ролик удалён. Осталось '+clips.length+'.')};row.append(meta,rm);list.append(row)});$('count').textContent=clips.length+' / 3';make.disabled=!clips.length||busy}
+picker.addEventListener('change',e=>{const incoming=Array.from(e.target.files||[]);let added=0;for(const f of incoming){if(!(f.type.startsWith('video/')||/\.(mp4|mov|m4v|webm)$/i.test(f.name)))continue;if(clips.length>=3)break;clips.push(f);added++}render();clearOutput();msg(added?'✓ Добавлено '+added+' видео. Всего: '+clips.length+'.': 'Видео не добавлены. Проверь выбранный файл или лимит в 3 ролика.');picker.value=''});
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');mood=b.dataset.mood});
+function load(file){return new Promise((resolve,reject)=>{const v=document.createElement('video');v.preload='auto';v.muted=true;v.playsInline=true;v.setAttribute('playsinline','');const u=URL.createObjectURL(file);v.onloadedmetadata=()=>resolve({v,u,d:v.duration});v.onerror=()=>{URL.revokeObjectURL(u);reject(new Error('Не удалось прочитать видео: '+file.name))};v.src=u;v.load()})}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+function supportedMime(){if(!window.MediaRecorder)return null;const types=['video/mp4','video/mp4;codecs=h264','video/webm'];for(const t of types){try{if(MediaRecorder.isTypeSupported(t))return t}catch(e){}}return ''}
+async function create(){
+ if(busy||!clips.length)return;
+ if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream){msg('Эта версия iOS/Safari не поддерживает экспорт видео. Обнови iOS и открой страницу в Safari.');return}
+ busy=true;make.disabled=true;$('save').disabled=true;$('play').disabled=true;bar.style.width='0%';
+ let entries=[],stream=null,rec=null,stopped=null;
+ try{
+  for(let i=0;i<clips.length;i++){msg('Подготавливаю видео '+(i+1)+' из '+clips.length+'…');entries.push(await load(clips[i]))}
+  const good=entries.filter(x=>Number.isFinite(x.d)&&x.d>0);if(!good.length)throw Error('Не удалось определить длительность видео.');
+  const canvas=document.createElement('canvas'),ratio=$('ratio').value;canvas.width=ratio==='vertical'?360:480;canvas.height=ratio==='vertical'?640:ratio==='square'?480:270;
+  const ctx=canvas.getContext('2d');if(!ctx)throw Error('Не удалось подготовить видеомонтаж.');
+  stream=canvas.captureStream(20);const mime=supportedMime();rec=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);const chunks=[];
+  rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+  stopped=new Promise((resolve,reject)=>{rec.onstop=resolve;rec.onerror=()=>reject(Error('Safari остановил экспорт видео.'))});
+  rec.start(500);
+  const target=Math.min(15,good.reduce((s,x)=>s+x.d,0));let done=0,remaining=target;
+  for(let i=0;i<good.length&&remaining>0;i++){
+   const item=good[i],v=item.v,seg=Math.min(item.d,remaining);v.currentTime=0;
+   // muted inline playback is allowed by iOS Safari without a second user gesture
+   await v.play();
+   const start=performance.now();
+   while((performance.now()-start)/1000<seg&&!v.ended){
+    const w=canvas.width,h=canvas.height,vw=v.videoWidth||w,vh=v.videoHeight||h,scale=ratio==='wide'?Math.min(w/vw,h/vh):Math.max(w/vw,h/vh),dw=vw*scale,dh=vh*scale;
+    ctx.fillStyle='#050609';ctx.fillRect(0,0,w,h);ctx.drawImage(v,(w-dw)/2,(h-dh)/2,dw,dh);
+    if(mood==='cinema'){ctx.fillStyle='rgba(8,18,35,.14)';ctx.fillRect(0,0,w,h)}if(mood==='atmo'){ctx.fillStyle='rgba(70,80,160,.12)';ctx.fillRect(0,0,w,h)}
+    const p=Math.min(1,(done+(performance.now()-start)/1000)/target);bar.style.width=(p*100)+'%';msg('Создаю эдит · '+Math.round(p*100)+'%');await wait(45);
+   }
+   v.pause();done+=seg;remaining-=seg;
+  }
+  rec.stop();await stopped;outBlob=new Blob(chunks,{type:rec.mimeType||'video/mp4'});if(!outBlob.size)throw Error('Получился пустой файл. Попробуй короткие видео в формате MP4 или MOV.');
+  outUrl=URL.createObjectURL(outBlob);preview.innerHTML='';outVideo=document.createElement('video');outVideo.src=outUrl;outVideo.controls=true;outVideo.playsInline=true;preview.append(outVideo);
+  $('play').disabled=false;$('save').disabled=false;bar.style.width='100%';msg('✓ Эдит готов · '+size(outBlob.size));
+ }catch(err){console.error(err);msg(err.message||'Не удалось создать видео. Попробуй другой ролик.')}
+ finally{if(rec&&rec.state!=='inactive'){try{rec.stop()}catch(e){}}if(stream)stream.getTracks().forEach(t=>t.stop());entries.forEach(x=>{x.v.pause();URL.revokeObjectURL(x.u)});busy=false;make.disabled=!clips.length}
+}
+make.addEventListener('click',create);
+$('play').onclick=()=>{if(outVideo){if(outVideo.paused)outVideo.play();else outVideo.pause()}};
+$('save').onclick=()=>{if(!outBlob||!outUrl)return;const ext=outBlob.type.includes('mp4')?'mp4':'webm';const a=document.createElement('a');a.href=outUrl;a.download='edit-ai.'+ext;document.body.appendChild(a);a.click();a.remove();msg('Загрузка началась. Если открылся предпросмотр, нажми «Поделиться» и сохрани видео.')};
+render();
+})();
+</script></body></html>
